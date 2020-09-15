@@ -55,7 +55,7 @@ Soon more!
 ## ChatEvents
 Зрители могут написать команду - !start
 ```
-List - event:
+Список - event:
  -heart - отнять сердце (160)
  +heart - дать сердце (185)
  +hardcore - выкл реген (140)
