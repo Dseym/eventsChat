@@ -6,19 +6,22 @@
 1. Download the source code and upload it to Eclipse for example.
 2. Add External JARs: [Server Core](https://getbukkit.org/download/craftbukkit) 1.12.2.
 3. Add External JARs: [StreamInfoYouTube](https://github.com/Dseym/streamInfoYouTube/releases/download/streamInfoYouTube/streamInfoYouTube.jar).
-4. Now you have the code that you can edit!
+4. Add External JARs: [StreamInfoTwitch](https://github.com/Dseym/streamInfoTwitch/releases/download/streamInfoTwitch/streamInfoTwitch.jar).
+5. Now you have the code that you can edit!
 
 ## Install for Server
 1. Download the compiled [EventsChat](https://github.com/Dseym/eventsChat/releases/download/eventsChat/eventsChat.jar) and upload it to your server.
 2. Download the compiled [StreamInfoYouTube](https://github.com/Dseym/streamInfoYouTube/releases/download/streamInfoYouTube/streamInfoYouTube.jar) and upload it to your server.
-3. Have fun!
+3. Download the compiled [StreamInfoTwitch](https://github.com/Dseym/streamInfoTwitch/releases/download/streamInfoTwitch/streamInfoTwitch.jar) and upload it to your server.
+4. Have fun!
 
 ## Commands
-1. /events stream videoID - set ID stream, watch?v=ID (MVXja46rOOg)
-2. /events start - start game
+1. /events youtube videoID - set ID stream, watch?v=ID (MVXja46rOOg)
+2. /events twitch videoID - set channelName
+3. /events start - start game
 
 ## ChatEvents
-Viewers can write to the chat - !start
+New viewers are automatically added to the game
 ```
 List - event:
  -heart - Take away the heart (160)
@@ -45,15 +48,17 @@ Soon more!
 1. Скачайте исходный код и загрузите, к примеру, в Eclipse.
 2. Добавьте External Jars в проект: [Серверное ядро](https://getbukkit.org/download/craftbukkit) 1.12.2.
 3. Добавьте External Jars в проект: [StreamInfoYouTube](https://github.com/Dseym/streamInfoYouTube/releases/download/streamInfoYouTube/streamInfoYouTube.jar).
+4. Добавьте External Jars в проект: [StreamInfoTwitch](https://github.com/Dseym/streamInfoTwitch/releases/download/streamInfoTwitch/streamInfoTwitch.jar).
 4. Теперь у Вас есть код для редактирования!
 
 ## Установка на сервер
 1. Скачайте скомпилированный [EventsChat](https://github.com/Dseym/eventsChat/releases/download/eventsChat/eventsChat.jar) и загрузите на свой сервер.
 2. Скачайте скомпилированный [StreamInfoYouTube](https://github.com/Dseym/streamInfoYouTube/releases/download/streamInfoYouTube/streamInfoYouTube.jar) и загрузите на свой сервер.
-3. Веселитесь!
+3. Скачайте скомпилированный [StreamInfoTwitch](https://github.com/Dseym/streamInfoTwitch/releases/download/streamInfoTwitch/streamInfoTwitch.jar) и загрузите на свой сервер.
+4. Веселитесь!
 
 ## ChatEvents
-Зрители могут написать команду - !start
+Новые зрители автоматически добавляются в игру
 ```
 Список - event:
  -heart - отнять сердце (160)
@@ -74,8 +79,9 @@ Soon more!
 Пример в чате: !event event
 
 ## Commands
-1. /events stream videoID - установить ID стрима, watch?v=ID (MVXja46rOOg)
-2. /events start - начать игру
+1. /events youtube videoID - установить ID стрима, watch?v=ID (MVXja46rOOg)
+2. /events twitch channelName - установить channelName стрима
+3. /events start - начать игру
 
 Скоро больше!
 

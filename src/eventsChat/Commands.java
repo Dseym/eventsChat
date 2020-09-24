@@ -5,7 +5,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-import StreamInfoYoutube.YouTube;
+import streamInfoTwitch.Twitch;
+import streamInfoYoutube.YouTube;
 
 public class Commands implements CommandExecutor {
 
@@ -15,7 +16,7 @@ public class Commands implements CommandExecutor {
 		if(args.length == 0)
 			return false;
 		
-		if(args[0].equalsIgnoreCase("stream"))
+		if(args[0].equalsIgnoreCase("youtube"))
 			if(args.length != 2) {
 				
 				sender.sendMessage(Main.tagPlugin + "Введите ID стрима");
@@ -32,8 +33,21 @@ public class Commands implements CommandExecutor {
 				} catch (Exception e) {
 					
 					sender.sendMessage(Main.tagPlugin + "Возможно, это не стрим");
+					EventManager.youtube = null;
 					
 				}
+				
+			}
+		else if(args[0].equalsIgnoreCase("twitch"))
+			if(args.length != 2) {
+				
+				sender.sendMessage(Main.tagPlugin + "Введите название канала");
+				return true;
+				
+			} else {
+				
+				EventManager.twitch = new Twitch("#" + args[1]);
+				EventManager.twitch.connect();
 				
 			}
 		else if(args[0].equalsIgnoreCase("start")) {
@@ -45,15 +59,15 @@ public class Commands implements CommandExecutor {
 				
 			}
 			
-			if(EventManager.youtube == null) {
+			if(EventManager.youtube == null && EventManager.twitch == null) {
 				
-				sender.sendMessage(Main.tagPlugin + "Сначала укажите ID стрима");
+				sender.sendMessage(Main.tagPlugin + "Сначала укажите хотя-бы один стрим");
 				return true;
 				
 			}
 			
-			EventManager.timerEvents = Bukkit.getScheduler().runTaskTimer(Main.plugin, new EventManager(), 10*20, 5*20);
-			sender.sendMessage(Main.tagPlugin + "Ивенты включатся через 10 сек");
+			EventManager.timerEvents = Bukkit.getScheduler().runTaskTimer(Main.plugin, new EventManager(), 5*20, 5*20);
+			sender.sendMessage(Main.tagPlugin + "Ивенты включатся через 5 сек");
 			
 		}
 		

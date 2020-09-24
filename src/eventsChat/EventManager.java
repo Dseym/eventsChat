@@ -17,11 +17,13 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 
-import StreamInfoYoutube.YouTube;
+import streamInfoTwitch.Twitch;
+import streamInfoYoutube.YouTube;
 
 public class EventManager implements Runnable {
 
 	protected static YouTube youtube;
+	protected static Twitch twitch;
 	protected static List<String> listEvents = new ArrayList<String>();
 	protected static BukkitTask timerEvents;
 	protected static boolean start = false;
@@ -32,7 +34,12 @@ public class EventManager implements Runnable {
 		
 		try {
 			
-			Map<String, String> listMessages = youtube.getMessages();
+			Map<String, String> listMessages = new HashMap<String, String>();
+			if(youtube != null)
+				listMessages.putAll(youtube.getMessages());
+			if(twitch != null)
+				listMessages.putAll(twitch.getMessages());
+			
 			for(String nick: listMessages.keySet()) {
 				
 				String mess = listMessages.get(nick);
@@ -113,7 +120,7 @@ public class EventManager implements Runnable {
 						
 					}
 					
-				} else if(mess.equalsIgnoreCase("!start")) {
+				} else {
 					
 					users.put(nick, 0);
 					Main.sendMessageAll("Новый игрок! " + nick + ", добро пожаловать!");
