@@ -48,6 +48,7 @@ public class Commands implements CommandExecutor {
 				
 				EventManager.twitch = new Twitch("#" + args[1]);
 				EventManager.twitch.connect();
+				sender.sendMessage(Main.tagPlugin + "Канал установлен");
 				
 			}
 		else if(args[0].equalsIgnoreCase("start")) {

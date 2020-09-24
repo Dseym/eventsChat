@@ -125,6 +125,9 @@ public class EventManager implements Runnable {
 					users.put(nick, 0);
 					Main.sendMessageAll("Новый игрок! " + nick + ", добро пожаловать!");
 					
+					users.replace(nick, users.get(nick) + (((int)(mess.length() / 5) + 1) * ((int)(mess.split(" ").length / 4) + 1)) + 1);
+					Main.sendMessageAll(nick + ": " + mess);
+					
 				}
 				
 			}
