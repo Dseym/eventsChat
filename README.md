@@ -1,45 +1,78 @@
 # eventsChat
-Плагин, который добавляет в майнкрафт ивенты от чата ютуб! Работает с StreamInfoYouTube / A plugin that adds events from the YouTube chat to minecraft! Works with StreamInfoYouTube
+Плагин, который добавляет в майнкрафт ивенты от чата ютуб и чата твича! Работает с YouTubeStream и TwitchStream / Plugin that adds events from YouTube chat and Twitch chat to minecraft! Works with YouTubeStream and TwitchStream
 
 # ENG
 ## Compile
 1. Download the source code and upload it to Eclipse for example.
 2. Add External JARs: [Server Core](https://getbukkit.org/download/craftbukkit) 1.12.2.
-3. Add External JARs: [StreamInfoYouTube](https://github.com/Dseym/streamInfoYouTube/releases/download/streamInfoYouTube/streamInfoYouTube.jar).
-4. Add External JARs: [StreamInfoTwitch](https://github.com/Dseym/streamInfoTwitch/releases/download/streamInfoTwitch/streamInfoTwitch.jar).
-5. Now you have the code that you can edit!
+3. Add External JARs: [YouTubeStream](https://github.com/Dseym/streamInfoYouTube/releases/download/youtubeStream/youtubeStream.jar).
+4. Add External JARs: [TwitchStream](https://github.com/Dseym/twitchStream/releases/download/twitchStream/twitchStream.jar).
+5. Install [lombok](https://projectlombok.org/).
+6. Now you have the code that you can edit!
 
 ## Install for Server
 1. Download the compiled [EventsChat](https://github.com/Dseym/eventsChat/releases/download/eventsChat/eventsChat.jar) and upload it to your server.
-2. Download the compiled [StreamInfoYouTube](https://github.com/Dseym/streamInfoYouTube/releases/download/streamInfoYouTube/streamInfoYouTube.jar) and upload it to your server.
-3. Download the compiled [StreamInfoTwitch](https://github.com/Dseym/streamInfoTwitch/releases/download/streamInfoTwitch/streamInfoTwitch.jar) and upload it to your server.
-4. Have fun!
+2. Download the compiled [YouTubeStream](https://github.com/Dseym/streamInfoYouTube/releases/download/youtubeStream/youtubeStream.jar) and upload it to your server.
+3. Download the compiled [TwitchStream](https://github.com/Dseym/twitchStream/releases/download/twitchStream/twitchStream.jar) and upload it to your server.
+4. Set up config.
+5. Have fun!
 
 ## Commands
-1. /events youtube videoID - set ID stream, watch?v=ID (MVXja46rOOg)
-2. /events twitch videoID - set channelName
-3. /events start - start game
+1. /events youtube set <videoID> - set ID stream, watch?v=ID (MVXja46rOOg)
+2. /events twitch set <channelName> - set channelName
+3. /events stop - disconnect
 
-## ChatEvents
-New viewers are automatically added to the game
+## Config
+```yml
+twitch:
+  oauth: "*yourOAUTH*"
+  nick: "*yourNick*"
+
+youtube:
+  api: "yourAPI"
+```
+
+## GameEvents
+Now the plugin already has 25 pre-installed events.
 ```
 List - event:
- -heart - Take away the heart (160)
- +heart - Give a heart (185)
- +hardcore - Switch off regeneration. (140)
- -hardcore - Switch on regeneration. (150)
- hello - Say hello to the streamer (50)
- anvil - Anvil on the head (110)
- poison - Poison (115)
- lava - Lava flows from all sides (190)
- drop - Throw the object out of hand (100)
- apple - Give the golden apple to the streamer (70)
- tp - Randomly teleport a streamer (150)
- dragon - Summon the dragon (500)
- wither - Summon the wither (400)
- item - Give out a random item from all over Minecraft. (80)
+ -heart, +heart, hardcore, hello
+ anvil, poison, lava, drop, apple
+ tp, dragon, wither, item, notch
+ bomb, creeper, error, eat, totem
+ grass, hole, iron, pickaxe
+ obsidian, pumpkin, zeus
+
 ```
 Example in chat: !event event
+
+## Bettings
+There is only one bet in the game now.
+```
+List - bet:
+ died
+
+```
+Example in chat: !bet **nameActiveBet** **yes/no** **money**
+
+## API
+Register custom GameEvent
+```java
+constructor GameEvent(String name /*how will be called from the chat*/, String message /*what message the targets will receive*/, String cost /*cost event*/);
+GameEventManager.getManager().registerEvent(new <? extends GameEvent>);
+```
+New custom betting
+```java
+constructor Betting(String name /*how will be called from the chat*/, String description /*description*/, Plugin plugin, int time /*duration of the bet*/);
+BettingManager.getManager().newBetting(new <? extends Betting>);
+```
+Events:
+```java
+CallGameEventEvent //called when GameEvent is called
+ChatEvent //called when a new message appears
+NewBettingEvent //called when a new bid is created
+NewSpectatorEvent //called when a new viewer appears in the chat
+```
 
 Soon more!
 
@@ -47,41 +80,74 @@ Soon more!
 ## Компиляция
 1. Скачайте исходный код и загрузите, к примеру, в Eclipse.
 2. Добавьте External Jars в проект: [Серверное ядро](https://getbukkit.org/download/craftbukkit) 1.12.2.
-3. Добавьте External Jars в проект: [StreamInfoYouTube](https://github.com/Dseym/streamInfoYouTube/releases/download/streamInfoYouTube/streamInfoYouTube.jar).
-4. Добавьте External Jars в проект: [StreamInfoTwitch](https://github.com/Dseym/streamInfoTwitch/releases/download/streamInfoTwitch/streamInfoTwitch.jar).
-4. Теперь у Вас есть код для редактирования!
+3. Добавьте External Jars в проект: [YouTubeStream](https://github.com/Dseym/streamInfoYouTube/releases/download/youtubeStream/youtubeStream.jar).
+4. Добавьте External Jars в проект: [TwitchStream](https://github.com/Dseym/twitchStream/releases/download/twitchStream/twitchStream.jar).
+5. Установите [lombok](https://projectlombok.org/).
+6. Теперь у Вас есть код для редактирования!
 
 ## Установка на сервер
 1. Скачайте скомпилированный [EventsChat](https://github.com/Dseym/eventsChat/releases/download/eventsChat/eventsChat.jar) и загрузите на свой сервер.
-2. Скачайте скомпилированный [StreamInfoYouTube](https://github.com/Dseym/streamInfoYouTube/releases/download/streamInfoYouTube/streamInfoYouTube.jar) и загрузите на свой сервер.
-3. Скачайте скомпилированный [StreamInfoTwitch](https://github.com/Dseym/streamInfoTwitch/releases/download/streamInfoTwitch/streamInfoTwitch.jar) и загрузите на свой сервер.
-4. Веселитесь!
+2. Скачайте скомпилированный [YouTubeStream](https://github.com/Dseym/streamInfoYouTube/releases/download/youtubeStream/youtubeStream.jar) и загрузите на свой сервер.
+3. Скачайте скомпилированный [TwitchStream](https://github.com/Dseym/twitchStream/releases/download/twitchStream/twitchStream.jar) и загрузите на свой сервер.
+4. Настройте конфиг.
+5. Веселитесь!
 
-## ChatEvents
-Новые зрители автоматически добавляются в игру
+## Commands
+1. /events youtube set <videoID> - установить ID стрима, watch?v=ID (MVXja46rOOg)
+2. /events twitch set <channelName> - установить channelName
+3. /events stop - отключиться
+
+## Конфиг
+```yml
+twitch:
+  oauth: "*yourOAUTH*"
+  nick: "*yourNick*"
+
+youtube:
+  api: "yourAPI"
 ```
-Список - event:
- -heart - отнять сердце (160)
- +heart - дать сердце (185)
- +hardcore - выкл реген (140)
- -hardcore - вкл реген (150)
- hello - поздароваться со мной (50)
- anvil - наковальни на голову (110)
- poison - отравить (115)
- lava - пол это лава (190)
- drop - выкинуть предмет из руки (100)
- apple - дать золотое яблоко (70)
- tp - рандом телепорт (150)
- dragon - призвать дракона (500)
- wither - призвать визера (400)
- item - выдать рандом предмет со всего майнкрафта (80)
+
+## GameEvents
+Сейчас в плагине 25 предустановленных ивентов.
+```
+Спиоск - event:
+ -heart, +heart, hardcore, hello
+ anvil, poison, lava, drop, apple
+ tp, dragon, wither, item, notch
+ bomb, creeper, error, eat, totem
+ grass, hole, iron, pickaxe
+ obsidian, pumpkin, zeus
+
 ```
 Пример в чате: !event event
 
-## Commands
-1. /events youtube videoID - установить ID стрима, watch?v=ID (MVXja46rOOg)
-2. /events twitch channelName - установить channelName стрима
-3. /events start - начать игру
+## Bettings
+Сейчас в плагине только 1 ставка.
+```
+Список - bet:
+ died
+
+```
+Пример в чате: !bet **activeBet** **yes/no** **money**
+
+## API
+Регистрация кастомного GameEvent
+```java
+constructor GameEvent(String name /*как будет вызыватся из чата*/, String message /*какое сообщение будет отправляться цели*/, String cost /*стоимость ивента*/);
+GameEventManager.getManager().registerEvent(new <? extends GameEvent>);
+```
+New custom betting
+```java
+constructor Betting(String name /*как будет вызыватся из чата*/, String description /*описание*/, Plugin plugin, int time /*длительность ставки*/);
+BettingManager.getManager().newBetting(new <? extends Betting>);
+```
+Events:
+```java
+CallGameEventEvent //вызывается когда вызывается GameEvent
+ChatEvent //вызывается когда появляется новое сообщение
+NewBettingEvent //вызывается когда создается новая ставка
+NewSpectatorEvent //вызывается когда появляется новый зритель в чате
+```
 
 Скоро больше!
 
