@@ -2,8 +2,9 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/kirill/Desktop/игры/server 1.14.4/craftbukkit-1.14.4-R0.1-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="C:/Users/kirill/Desktop/игры/spigot 1.12.2/plugins/streamInfoTwitch.jar"/>
-	<classpathentry kind="lib" path="C:/Users/kirill/Desktop/игры/spigot 1.12.2/plugins/streamInfoYouTube.jar"/>
+	<classpathentry kind="lib" path="C:/programming/lombok.jar"/>
+	<classpathentry kind="lib" path="C:/programming/minecraft/youtubeStream.jar"/>
+	<classpathentry kind="lib" path="C:/programming/minecraft/twitchStream.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kirill/Desktop/игры/spigot 1.12.2/spigot-1.12.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

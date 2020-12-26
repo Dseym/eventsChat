@@ -1,7 +1,7 @@
 name: EventsChat
 version: 1.0
 api-version: 1.13
-main: eventsChat.Main
+main: ru.dseymo.eventsChat.Main
 commands:
   events:
-    usage: /events <command> [string]
+    aliases: [event, ev]
