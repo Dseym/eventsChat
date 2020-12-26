@@ -19,7 +19,7 @@ public class Main extends JavaPlugin {
 	
 	private EventsExecutor eventsExecutor;
 	@Getter
-	private boolean debug = true;
+	private boolean debug = false;
 	
 	public void onEnable() {
 		
