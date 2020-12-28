@@ -5,8 +5,8 @@ import java.util.HashMap;
 import org.bukkit.Bukkit;
 
 import ru.dseymo.eventsChat.events.ChatEvent;
+import ru.dseymo.eventsChat.events.CommandEvent;
 import ru.dseymo.eventsChat.events.NewSpectatorEvent;
-import ru.dseymo.eventsChat.gameEvents.GameEventManager;
 import ru.dseymo.eventsChat.spectators.Platform;
 import ru.dseymo.eventsChat.spectators.Spectator;
 import ru.dseymo.youtubeStream.IMessagesListener;
@@ -37,21 +37,26 @@ public class MessageYouTubeListener implements IMessagesListener {
 			
 		}
 		
-		Spectator spectator = spectators.get(nick);
+		Bukkit.getPluginManager().callEvent(new ChatEvent(spectators.get(nick), mess));
 		
-		boolean isCommand = false;
-		if(mess.startsWith("!event ")) {
+	}
+
+	@Override
+	public void onCommand(String nick, String command, String[] args) {
+		
+		if(!spectators.containsKey(nick)) {
 			
-			isCommand = true;
+			Spectator spectator = new Spectator(nick, channel, Platform.YOUTUBE);
 			
-			String[] args = mess.split("!event ")[1].split(" ");
-			if(args.length != 0)
-				GameEventManager.getManager().callEvent(spectator, args[0]);
+			NewSpectatorEvent event = new NewSpectatorEvent(spectator);
+			Bukkit.getPluginManager().callEvent(event);
+			if(event.isCancelled()) return;
+			
+			spectators.put(nick, spectator);
 			
 		}
 		
-		ChatEvent event = new ChatEvent(spectator, mess, isCommand);
-		Bukkit.getPluginManager().callEvent(event);
+		Bukkit.getPluginManager().callEvent(new CommandEvent(spectators.get(nick), command, args));
 		
 	}
 

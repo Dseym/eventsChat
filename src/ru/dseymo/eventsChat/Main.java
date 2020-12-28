@@ -10,6 +10,7 @@ import ru.dseymo.eventsChat.bettings.BettingManager;
 import ru.dseymo.eventsChat.executes.EventsExecutor;
 import ru.dseymo.eventsChat.gameEvents.GameEventManager;
 import ru.dseymo.eventsChat.listeners.ChatListener;
+import ru.dseymo.eventsChat.listeners.CommandListener;
 import ru.dseymo.eventsChat.listeners.PlayerListener;
 
 public class Main extends JavaPlugin {
@@ -19,7 +20,7 @@ public class Main extends JavaPlugin {
 	
 	private EventsExecutor eventsExecutor;
 	@Getter
-	private boolean debug = false;
+	private boolean debug = true;
 	
 	public void onEnable() {
 		
@@ -30,6 +31,7 @@ public class Main extends JavaPlugin {
 		
 		Bukkit.getPluginManager().registerEvents(new ChatListener(), this);
 		Bukkit.getPluginManager().registerEvents(new PlayerListener(), this);
+		Bukkit.getPluginManager().registerEvents(new CommandListener(), this);
 		
 		BettingManager.getManager().setup(this);
 		GameEventManager.getManager().setup(this);

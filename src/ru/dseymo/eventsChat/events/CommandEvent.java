@@ -12,8 +12,8 @@ import lombok.Getter;
 import lombok.Setter;
 import ru.dseymo.eventsChat.spectators.Spectator;
 
-public class ChatEvent extends Event {
-
+public class CommandEvent extends Event {
+	
 	private static HandlerList handlers = new HandlerList();
 	
 	public static HandlerList getHandlerList() {
@@ -27,15 +27,18 @@ public class ChatEvent extends Event {
 	private boolean cancelled = false;
 	@Getter
 	private Spectator spectator;
-	@Getter @Setter
-	private String message;
+	@Getter
+	private String command;
+	@Getter
+	private String[] args;
 	@Getter
 	private ArrayList<UUID> targetPlayers = new ArrayList<>();
 	
-    public ChatEvent(Spectator spectator, String message) {
+    public CommandEvent(Spectator spectator, String command, String[] args) {
     	
     	this.spectator = spectator;
-    	this.message = message;
+    	this.command = command;
+    	this.args = args;
     	for(Player p: Bukkit.getOnlinePlayers())
     		targetPlayers.add(p.getUniqueId());
     	
@@ -46,5 +49,5 @@ public class ChatEvent extends Event {
         return handlers;
         
     }
-    
+	
 }

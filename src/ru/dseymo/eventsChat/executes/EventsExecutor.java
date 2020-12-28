@@ -73,7 +73,7 @@ public class EventsExecutor implements CommandExecutor {
 		if(args.length == 2) help(sender);
 		else {
 		
-			Twitch tw = new Twitch(args[2], config.getString("twitch.oauth"), config.getString("twitch.nick"), new MessageTwitchListener(args[2]));
+			Twitch tw = new Twitch(args[2], config.getString("twitch.oauth"), config.getString("twitch.nick"), '!', new MessageTwitchListener(args[2]));
 			
 			Result answ = tw.connect();
 			if(answ == Result.SUCCESS) {
@@ -111,7 +111,7 @@ public class EventsExecutor implements CommandExecutor {
 		if(args.length == 2) help(sender);
 		else {
 		
-			YouTube yt = new YouTube(args[2], config.getString("youtube.api"), new MessageYouTubeListener(args[2]));
+			YouTube yt = new YouTube(args[2], config.getString("youtube.api"), '!', new MessageYouTubeListener(args[2]));
 			
 			ru.dseymo.youtubeStream.Result answ = yt.connect();
 			if(answ == ru.dseymo.youtubeStream.Result.SUCCESS) {
