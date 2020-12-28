@@ -47,10 +47,10 @@ List - event:
 Example in chat: !event event
 
 ## Bettings
-There is only one bet in the game now.
+Now the plugin already has 2 pre-installed bettings.
 ```
 List - bet:
- died
+ died, diamonds
 
 ```
 Example in chat: !bet **nameActiveBet** **yes/no** **money**
@@ -70,6 +70,7 @@ Events:
 ```java
 CallGameEventEvent //called when GameEvent is called
 ChatEvent //called when a new message appears
+CommandEvent //called when someone writes a command (! command)
 NewBettingEvent //called when a new bid is created
 NewSpectatorEvent //called when a new viewer appears in the chat
 ```
@@ -122,10 +123,10 @@ youtube:
 Пример в чате: !event event
 
 ## Bettings
-Сейчас в плагине только 1 ставка.
+Сейчас в плагине 2 предустановленной ставки.
 ```
 Список - bet:
- died
+ died, diamonds
 
 ```
 Пример в чате: !bet **activeBet** **yes/no** **money**
@@ -145,6 +146,7 @@ Events:
 ```java
 CallGameEventEvent //вызывается когда вызывается GameEvent
 ChatEvent //вызывается когда появляется новое сообщение
+CommandEvent //вызывается когда ктото пишет команду (!command)
 NewBettingEvent //вызывается когда создается новая ставка
 NewSpectatorEvent //вызывается когда появляется новый зритель в чате
 ```
