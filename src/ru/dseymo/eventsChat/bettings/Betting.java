@@ -27,10 +27,12 @@ public abstract class Betting implements Listener {
 	@Getter
 	private String name, description;
 	private BossBar bar;
+	@Getter
 	private HashMap<Spectator, Integer> yes = new HashMap<>(), no = new HashMap<>();
 	@Getter
 	protected ArrayList<UUID> targets = new ArrayList<>();
 	private Plugin plugin;
+	@Getter
 	private int maxTime, time;
 	private BukkitTask timer;
 	
@@ -46,6 +48,14 @@ public abstract class Betting implements Listener {
 		
 	}
 	
+	public void setTime(int time) {
+		
+		if(time > maxTime) time = maxTime;
+		
+		this.time = time;
+		
+	}
+	
 	private boolean activated = false;
 	public void activate() {
 		
@@ -53,7 +63,8 @@ public abstract class Betting implements Listener {
 		
 		activated = true;
 		
-		bar = Bukkit.createBossBar(name + " -> " + description, BarColor.BLUE, BarStyle.SOLID);
+		bar = Bukkit.createBossBar(name, BarColor.BLUE, BarStyle.SOLID);
+		setTitle(description);
 		for(UUID uuid: targets)
 			bar.addPlayer(Bukkit.getPlayer(uuid));
 		
@@ -71,9 +82,12 @@ public abstract class Betting implements Listener {
 			
 		}.runTaskTimer(plugin, 20, 20);
 		
-		Chat.message(targets, prefix + name + "&e: начались ставки! " + description);
+		abstActivate();
 		
 	}
+	
+	protected abstract void abstActivate();
+	protected void setTitle(String title) {bar.setTitle(name + " -> " + title);}
 	
 	public void addYes(Spectator spec, int money) {
 		
@@ -190,6 +204,6 @@ public abstract class Betting implements Listener {
 		
 	}
 	
-	public abstract void abstFinalize();
+	protected abstract void abstFinalize();
 	
 }

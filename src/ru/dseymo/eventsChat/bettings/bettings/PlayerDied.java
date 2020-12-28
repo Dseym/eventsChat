@@ -9,7 +9,7 @@ import ru.dseymo.eventsChat.bettings.Betting;
 public class PlayerDied extends Betting {
 
 	public PlayerDied() {
-		super("died", "Умрет ли игрок?", Main.getInstance(), 60);
+		super("died", "Умрет ли игрок?", Main.getInstance(), 30);
 	}
 	
 	@EventHandler
@@ -19,6 +19,9 @@ public class PlayerDied extends Betting {
 			result(true);
 		
 	}
+	
+	@Override
+	protected void abstActivate() {}
 	
 	
 	@Override
